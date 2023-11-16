@@ -18,4 +18,3 @@ var prismacolors = [
     new Color("Apple Green", "#4DAD44")
 ];
 prismacolors[0].convertToRGB();
-console.log(prismacolors[0].color);
