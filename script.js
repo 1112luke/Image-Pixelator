@@ -2,13 +2,12 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-var blocksize = 10;
+var blocksize = 5
 
 var img;
-
 function preload() {
     
-    img = loadImage('assets/lynley.jpg');
+    img = loadImage('assets/luke.png');
 }
 
 function setup() {
@@ -26,9 +25,9 @@ function setup() {
     //render as blocks
     renderAsBlocks(WIDTH, HEIGHT, newpixelarr);
     //display image 
-    newimg.loadPixels();
-    newimg.resize(350,0);
-    image(newimg, 350, 350);
+    //newimg.loadPixels();
+    //newimg.resize(350,0);
+    //image(newimg, 350, 350);
     //image(img, 100,100);
   }
   
@@ -118,7 +117,20 @@ function setup() {
 
   function renderAsBlocks(oldwidth, oldheight, pixels){
     canvas.width = oldwidth;
-    canvas.height = 200;
+    canvas.height = oldheight;
+    var cols = canvas.width / blocksize;
+    var rows = canvas.height / blocksize;
     ctx.fillStyle = "blue";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    var count = 0;
+
+    for(var i = 0; i < rows; i++){
+        for(var j = 0; j < cols; j++){
+            //set color for current block
+            ctx.fillStyle = `rgba(${pixels[count][0]},${pixels[count][1]},${pixels[count][2]},255)`;
+
+            ctx.fillRect(j*blocksize,i*blocksize,blocksize,blocksize);
+
+            count ++;
+        }
+    }
   }
