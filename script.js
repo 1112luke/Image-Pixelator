@@ -1,3 +1,7 @@
+//create html canvas
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
 var blocksize = 10;
 
 var img;
@@ -19,11 +23,13 @@ function setup() {
     var newpixelarr = createPixelArray(pixels,WIDTH,HEIGHT);
     //make image from pixelated array
     var newimg = makeImage(newpixelarr,WIDTH,HEIGHT);
+    //render as blocks
+    renderAsBlocks(WIDTH, HEIGHT, newpixelarr);
     //display image 
     newimg.loadPixels();
-
+    newimg.resize(350,0);
     image(newimg, 350, 350);
-    image(img, 100,100);
+    //image(img, 100,100);
   }
   
   function draw() {
@@ -108,4 +114,11 @@ function setup() {
     }
     out.updatePixels();
     return out;
+  }
+
+  function renderAsBlocks(oldwidth, oldheight, pixels){
+    canvas.width = oldwidth;
+    canvas.height = 200;
+    ctx.fillStyle = "blue";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
   }
