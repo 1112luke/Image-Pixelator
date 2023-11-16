@@ -7,7 +7,7 @@ var blocksize = 5
 var img;
 function preload() {
     
-    img = loadImage('assets/luke.png');
+    img = loadImage('assets/lynley.jpg');
 }
 
 function setup() {
@@ -29,11 +29,7 @@ function setup() {
     //newimg.resize(350,0);
     //image(newimg, 350, 350);
     //image(img, 100,100);
-  }
-  
-  function draw() {
-  }
-
+}
 
   function createGoodArray(pixels,WIDTH,HEIGHT){
     var understandable = [];
@@ -97,7 +93,6 @@ function setup() {
   }
 
   function makeImage(pix,WIDTH,HEIGHT){
-    console.log(pix);
     let out = createImage(WIDTH/blocksize, HEIGHT/blocksize);
     out.loadPixels();
     let numPixels = out.width * out.height;
@@ -134,3 +129,6 @@ function setup() {
         }
     }
   }
+
+
+  
