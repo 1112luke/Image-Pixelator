@@ -1,3 +1,6 @@
+//get colors array
+import { prismacolors } from "./colors";
+
 //create html canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -24,6 +27,8 @@ function setup() {
     var HEIGHT = pixels.length;
     //create pixelated image array
     var newpixelarr = createPixelArray(pixels,WIDTH,HEIGHT);
+    //findclosestcolors
+    var newpixelarr = findCloseColors(newpixelarr, prismacolors);
     //make image from pixelated array
     var newimg = makeImage(newpixelarr,WIDTH,HEIGHT);
     //render as blocks
@@ -138,6 +143,26 @@ slider.oninput = function(){
     return out;
   }
 
+  
+  function findCloseColors(pixels, colors){
+    for(var i = 0; i < pixels.length; i++){
+        var min = 195075;
+        var closestColor = ""; 
+        for (var j = 0; j < prismacolors.length; j++){
+            var dist = Math.pow((prismacolors[j].rgba[0]-pixels[i][0]),2) + Math.pow((prismacolors[j].rgba[1]-pixels[i][1]),2) 
+            + Math.pow((prismacolors[j].rgba[2]-pixels[i][2]),2);
+            if (dist < min){
+                min = dist;
+                closestColor = prismacolors[j];
+            } 
+        }
+        pixels[i][0] = closestColor.rgba[0];
+        pixels[i][1] = closestColor.rgba[1];
+        pixels[i][2] = closestColor.rgba[2];
+        pixels[i][3] = 255;
+    }
+  }
+
   function renderAsBlocks(oldwidth, oldheight, pixels){
     canvas.width = oldwidth;
     canvas.height = oldheight;
@@ -160,3 +185,4 @@ slider.oninput = function(){
 
 
   
+
