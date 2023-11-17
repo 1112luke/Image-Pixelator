@@ -2,7 +2,7 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-var blocksize = 5
+var blocksize = 11
 
 var img;
 function preload() {
@@ -11,6 +11,7 @@ function preload() {
 }
 
 function setup() {
+
     createCanvas(1000,1000);
     //load image
     img.loadPixels();
@@ -18,6 +19,9 @@ function setup() {
     var HEIGHT = img.height;
     //pixel formatting
     var pixels = createGoodArray(img.pixels,WIDTH,HEIGHT);
+    //redefine width and height after change
+    var WIDTH = pixels[0].length;
+    var HEIGHT = pixels.length;
     //create pixelated image array
     var newpixelarr = createPixelArray(pixels,WIDTH,HEIGHT);
     //make image from pixelated array
@@ -30,6 +34,15 @@ function setup() {
     //image(newimg, 350, 350);
     //image(img, 100,100);
 }
+
+//handle slider
+
+var slider = document.getElementById("slider");
+slider.oninput = function(){
+    blocksize = this.value;
+    setup();
+}
+
 
   function createGoodArray(pixels,WIDTH,HEIGHT){
     var understandable = [];
@@ -52,14 +65,29 @@ function setup() {
         }
         out.push(row);
     }
+
+    //slice image to be divisible by blocks
+    //slice rows
+    var rowstoslice = out.length % blocksize;
+    for(var i = 0; i < rowstoslice; i++){
+       out.pop();
+    }
+    //remove colomns
+    var colstoslice = out[0].length % blocksize;
+    for(var i = 0; i < out.length; i++){
+        for(var j = 0; j < colstoslice; j++){
+            out[i].pop();
+        }
+    }
+
     return out;
   }
 
   function createPixelArray(pixels,WIDTH,HEIGHT){
-    out = [];
-    var r;
-    var g;
-    var b;
+    var out = [];
+    var r = 0;
+    var g = 0;
+    var b = 0;
     //make width and height for pixelated image
     var width = WIDTH / blocksize;
     var height = HEIGHT / blocksize
