@@ -15,7 +15,7 @@ class Color {
     }
 }
 
-var prismacolors = [
+export var prismacolors = [
     Color("10% Cool Grey", "E6E8E8"), 
     Color("10% French Grey", "E9E7DD"),
     Color("10% Warm Grey", "EAE8EA"),
@@ -167,4 +167,3 @@ var prismacolors = [
     Color("Yellow Ochre", "#DAAD41"), 
     Color("Yellowed Orange", "#FFA723")
 ]
-console.log(prismacolors[0].convertToRGB());
