@@ -207,13 +207,6 @@ class Color {
             this.rgba = [r, g, b, 255];
     }
 }
-// create an array of available colors
-var selectedcolors = [];
-for (var i=0; i < prismacolors.length; i++){
-    if (prismacolors[i].selected = true){
-        selectedcolors.push(prismacolors[i])
-    }
-}
 
 //handle slider
 
