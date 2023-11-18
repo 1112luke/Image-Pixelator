@@ -1,33 +1,33 @@
 var prismacolors = [
-    Color("10% Cool Grey", "E6E8E8"), 
-    Color("10% French Grey", "E9E7DD"),
-    Color("10% Warm Grey", "EAE8EA"),
-    Color("20% Cool Grey", "D9DDE2"), 
-    Color("20% French Grey", "D4D3C9"),
-    Color("20% Warm Grey", "D5D3D5"),
-    Color("30% Cool Grey", "C7CED5"), 
-    Color("30% French Grey", "C1BFB8"),
-    Color("30% Warm Grey", "C2BBBB"),
-    Color("50% Cool Grey", "A7B0B8"), 
-    Color("50% French Grey", "ABA4A1"),
-    Color("50% Warm Grey", "A299A1"),
-    Color("70% Cool Grey", "7C8C8E"), 
-    Color("70% French Grey", "7B6D62"),
-    Color("70% Warm Grey", "6D6262"),
-    Color("90% Cool Grey", "2D4A5A"), 
-    Color("90% French Grey", "292726"),
-    Color("90% Warm Grey", "554A4A"),
+    Color("10% Cool Grey", "#E6E8E8"), 
+    Color("10% French Grey", "#E9E7DD"),
+    Color("10% Warm Grey", "#EAE8EA"),
+    Color("20% Cool Grey", "#D9DDE2"), 
+    Color("20% French Grey", "#D4D3C9"),
+    Color("20% Warm Grey", "#D5D3D5"),
+    Color("30% Cool Grey", "#C7CED5"), 
+    Color("30% French Grey", "#C1BFB8"),
+    Color("30% Warm Grey", "#C2BBBB"),
+    Color("50% Cool Grey", "#A7B0B8"), 
+    Color("50% French Grey", "#ABA4A1"),
+    Color("50% Warm Grey", "#A299A1"),
+    Color("70% Cool Grey", "#7C8C8E"), 
+    Color("70% French Grey", "#7B6D62"),
+    Color("70% Warm Grey", "#6D6262"),
+    Color("90% Cool Grey", "#2D4A5A"), 
+    Color("90% French Grey", "#292726"),
+    Color("90% Warm Grey", "#554A4A"),
     Color("Apple Green", "#4DAD44"),
     Color("Aquamarine", "#008C9E"), 
     Color("Artichoke", "#7F7315"), 
     Color("Beige", "#FADDB2"), 
     Color("Beige Sienna", "#DDA492"), 
     Color("Black", "#0000000"), 
-    Color("Black Cherry", "520040"),
+    Color("Black Cherry", "#520040"),
     Color("Black Grape", "#320341"), 
     Color("Black Raspberry","#3B0A12"), 
     Color("Blue Lake", "#568BD2"), 
-    Color("Blue Slate", "94B2D6"),
+    Color("Blue Slate", "#94B2D6"),
     Color("Blue Violet Lake", "#4575BF"), 
     Color("Blush Pink", "#FFBCB8"),
     Color("Bronze", "#A17315"), 
@@ -117,7 +117,7 @@ var prismacolors = [
     Color("Pink Rose", "#ECB7C1"), 
     Color("Pomegranate", "#870038"),
     Color("Poppy Red", "#FF4908"), 
-    Color("Powder Blue", "C3D8EE"), 
+    Color("Powder Blue", "#C3D8EE"), 
     Color("Process Red", "#D74893"), 
     Color("Pumpkin Orange", "#DE6619"), 
     Color("Putty Beige", "#DECDC7"), 
@@ -194,6 +194,7 @@ class Color {
     constructor(id, hex, rgba){
         this.id = id;
         this.hex = hex;
+        this.selected = true; 
 
         //hex value to rgba value
         convertToRGB()
@@ -204,6 +205,13 @@ class Color {
             var g = (bigint >> 8) & 255;
             var b = bigint & 255;
             this.rgba = [r, g, b, 255];
+    }
+}
+// create an array of available colors
+var selectedcolors = [];
+for (var i=0; i < prismacolors.length; i++){
+    if (prismacolors[i].selected = true){
+        selectedcolors.push(prismacolors[i])
     }
 }
 
