@@ -319,7 +319,7 @@ slider.oninput = function(){
         for (var j = 0; j < prismacolors.length; j++){
             var dist = Math.pow((prismacolors[j].rgba[0]-pixels[i][0]),2) + Math.pow((prismacolors[j].rgba[1]-pixels[i][1]),2) 
             + Math.pow((prismacolors[j].rgba[2]-pixels[i][2]),2);
-            if (dist < min){
+            if ((dist < min) && (prismacolors[j].selected)){
                 min = dist;
                 closestColor = prismacolors[j];
             } 
