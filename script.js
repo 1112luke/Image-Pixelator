@@ -2,20 +2,19 @@ class Color {
     constructor(id, hex, rgba){
         this.id = id;
         this.hex = hex;
-        this.rgba;
-    }
+        this.selected = true; 
+
         //hex value to rgba value
-        convertToRGB(){
-            var newhex;
+        convertToRGB()
+            var newhex 
             this.newhex = this.hex.replace("#","");
             var bigint = parseInt(this.newhex, 16);
             var r = (bigint >> 16)& 255;
             var g = (bigint >> 8) & 255;
             var b = bigint & 255;
             this.rgba = [r, g, b, 255];
-        }  
+    }
 }
-
 
 var prismacolors = [
     new Color("10% Cool Grey", "#E6E8E8"), 
@@ -211,25 +210,6 @@ function setup() {
     //newimg.resize(350,0);
     //image(newimg, 350, 350);
     //image(img, 100,100);
-}
-
-
-class Color {
-    constructor(id, hex, rgba){
-        this.id = id;
-        this.hex = hex;
-        this.selected = true; 
-
-        //hex value to rgba value
-        convertToRGB()
-            var newhex 
-            this.newhex = this.hex.replace("#","");
-            var bigint = parseInt(this.newhex, 16);
-            var r = (bigint >> 16)& 255;
-            var g = (bigint >> 8) & 255;
-            var b = bigint & 255;
-            this.rgba = [r, g, b, 255];
-    }
 }
 
 
