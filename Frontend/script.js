@@ -170,6 +170,7 @@ var prismacolors = [
   new Color("Yellowed Orange", "#FFA723"),
 ];
 
+
 for (var i = 0; i < prismacolors.length; i++) {
   prismacolors[i].convertToRGB();
 }
@@ -177,6 +178,15 @@ for (var i = 0; i < prismacolors.length; i++) {
 //create html canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
+//fetch colors
+fetch("https://imageserver-pirf.onrender.com/colors")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
 
 //load image
 var imagepix = [];
@@ -186,6 +196,7 @@ var image = new Image();
 var WIDTH;
 var HEIGHT;
 
+//fetch image
 fetch("https://imageserver-pirf.onrender.com/elcap.png")
   .then((response) => {
     return response.blob();
@@ -312,9 +323,9 @@ function findCloseColors(pixels, prismacolors) {
     var closestColor = "";
     for (var j = 0; j < prismacolors.length; j++) {
       var dist =
-        Math.pow(prismacolors[j].rgba[0] - pixels[i][0], 2) +
-        Math.pow(prismacolors[j].rgba[1] - pixels[i][1], 2) +
-        Math.pow(prismacolors[j].rgba[2] - pixels[i][2], 2);
+        0.3 * Math.pow(prismacolors[j].rgba[0] - pixels[i][0], 2) +
+        0.59 * Math.pow(prismacolors[j].rgba[1] - pixels[i][1], 2) +
+        0.11 * Math.pow(prismacolors[j].rgba[2] - pixels[i][2], 2);
       if (dist < min && prismacolors[j].selected) {
         min = dist;
         closestColor = prismacolors[j];
