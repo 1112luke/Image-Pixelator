@@ -182,6 +182,8 @@ const ctx = canvas.getContext("2d");
 var imagepix = [];
 
 var image = new Image();
+//fix tainting issue
+image.crossOrigin = "Anonymous";
 
 var WIDTH;
 var HEIGHT;
