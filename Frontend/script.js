@@ -17,159 +17,7 @@ class Color {
   }
 }
 
-var prismacolors = [
-  new Color("10% Cool Grey", "#E6E8E8"),
-  new Color("10% French Grey", "#E9E7DD"),
-  new Color("10% Warm Grey", "#EAE8EA"),
-  new Color("20% Cool Grey", "#D9DDE2"),
-  new Color("20% French Grey", "#D4D3C9"),
-  new Color("20% Warm Grey", "#D5D3D5"),
-  new Color("30% Cool Grey", "#C7CED5"),
-  new Color("30% French Grey", "#C1BFB8"),
-  new Color("30% Warm Grey", "#C2BBBB"),
-  new Color("50% Cool Grey", "#A7B0B8"),
-  new Color("50% French Grey", "#ABA4A1"),
-  new Color("50% Warm Grey", "#A299A1"),
-  new Color("70% Cool Grey", "#7C8C8E"),
-  new Color("70% French Grey", "#7B6D62"),
-  new Color("70% Warm Grey", "#6D6262"),
-  new Color("90% Cool Grey", "#2D4A5A"),
-  new Color("90% French Grey", "#292726"),
-  new Color("90% Warm Grey", "#554A4A"),
-  new Color("Apple Green", "#4DAD44"),
-  new Color("Aquamarine", "#008C9E"),
-  new Color("Artichoke", "#7F7315"),
-  new Color("Beige", "#FADDB2"),
-  new Color("Beige Sienna", "#DDA492"),
-  new Color("Black", "#0000000"),
-  new Color("Black Cherry", "520040"),
-  new Color("Black Grape", "#320341"),
-  new Color("Black Raspberry", "#3B0A12"),
-  new Color("Blue Lake", "#568BD2"),
-  new Color("Blue Slate", "94B2D6"),
-  new Color("Blue Violet Lake", "#4575BF"),
-  new Color("Blush Pink", "#FFBCB8"),
-  new Color("Bronze", "#A17315"),
-  new Color("Burnt Ochre", "#9F5215"),
-  new Color("Cadmium Orange Hue", "#E9773D"),
-  new Color("Canary Yellow", "#FFFF6A"),
-  new Color("Caribbean Sea", "#8BBBE0"),
-  new Color("Carmine Red", "#DB3129"),
-  new Color("Celadon Green", "#ACBD9D"),
-  new Color("Cerulean Blue", "#005895"),
-  new Color("Chartreuse", "#C7D35C"),
-  new Color("Chestnut", "#672F17"),
-  new Color("China Blue", "#315AC7"),
-  new Color("Chocolate", "#481B0F"),
-  new Color("Clay Rose", "#C2A9AE"),
-  new Color("Cloud Blue", "#C7DDEA"),
-  new Color("Cobalt Blue Hue", "#32358B"),
-  new Color("Cobalt Turquoise", "#006769"),
-  new Color("Copenhagen Blue", "#005B8E"),
-  new Color("Cream", "#FFF4C8"),
-  new Color("Crimson Lake", "#880503"),
-  new Color("Crimson Red", "#B42830"),
-  new Color("Dahlia Purple", "#8D007B"),
-  new Color("Dark Brown", "#431F16"),
-  new Color("Dark Green", "#00512D"),
-  new Color("Dark Purple", "#652B84"),
-  new Color("Dark Umber", "#422B20"),
-  new Color("Deco Peach", "#FEE3E4"),
-  new Color("Deco Pink", "#FFD5E3"),
-  new Color("Deco Yellow", "#FFF1AB"),
-  new Color("Denim Blue", "#004993"),
-  new Color("Dioxazine Purple Hue", "#2B1A68"),
-  new Color("Eggshell", "#FFEAC6"),
-  new Color("Electric Blue", "#008ACF"),
-  new Color("Espresso", "#533D2E"),
-  new Color("Ginger Root", "#E7CEB1"),
-  new Color("Goldenrod", "#E8A42C"),
-  new Color("Grass Green", "#158245"),
-  new Color("Green Ochre", "#A08C1C"),
-  new Color("Grey Green Light", "#CAD9CB"),
-  new Color("Greyed Lavender", "#CFBDDC"),
-  new Color("Henna", "#994924"),
-  new Color("Hot Pink", "#FF8BBF"),
-  new Color("Imperial Violet", "#230B65"),
-  new Color("Inanthrone Blue", "#000059"),
-  new Color("Indigo Blue", "#002F50"),
-  new Color("Jade Green", "#74BD9F"),
-  new Color("Jasmine", "#FFDD93"),
-  new Color("Kelly Green", "#2F6943"),
-  new Color("Kelp Green", "#738C1C"),
-  new Color("Lavender", "#C39BC8"),
-  new Color("Lemon Yellow", "#FEF769"),
-  new Color("Light Aqua", "#68CDC4"),
-  new Color("Light Cerulean Blue", "#94C7EB"),
-  new Color("Light Green", "#B2DDA9"),
-  new Color("Light Peach", "#FED9C8"),
-  new Color("Light Umber", "#7F633F"),
-  new Color("Lilac", "#7A66A8"),
-  new Color("Limepeel", "#C6CD55"),
-  new Color("Magenta", "#A12049"),
-  new Color("Mahogany Red", "#8C0821"),
-  new Color("Marine Green", "#676210"),
-  new Color("Mediterranean Blue", "#007E9E"),
-  new Color("Metallic Gold", "#AC8B3C"),
-  new Color("Mineral Orange", "#E68C3F"),
-  new Color("Moss Green", "#6E6D13"),
-  new Color("Mulberry", "#A9007B"),
-  new Color("Muted Turquoise", "#51B7C3"),
-  new Color("Nector", "#E2947B"),
-  new Color("Neon Orange", "#FF7716"),
-  new Color("Neon Pink", "#FF34C0"),
-  new Color("Neon Yellow", "#FFFF3B"),
-  new Color("Non-Photo Blue", "#00BBD4"),
-  new Color("Olive Green", "#3E5939"),
-  new Color("Orange", "#FF6E12"),
-  new Color("Pale Sage", "#DDEAC6"),
-  new Color("Pale Vermilion", "#FA6610"),
-  new Color("Parma Violet", "#8E69BA"),
-  new Color("Parrot Green", "#00B092"),
-  new Color("Peach", "#F1A78D"),
-  new Color("Peach Beige", "#F8E4D6"),
-  new Color("Peacock Blue", "#00739A"),
-  new Color("Peacock Green", "#004729"),
-  new Color("Permanent Red", "#F60000"),
-  new Color("Periwinkle", "#50549B"),
-  new Color("Pink", "#F3889E"),
-  new Color("Pink Rose", "#ECB7C1"),
-  new Color("Pomegranate", "#870038"),
-  new Color("Poppy Red", "#FF4908"),
-  new Color("Powder Blue", "C3D8EE"),
-  new Color("Process Red", "#D74893"),
-  new Color("Pumpkin Orange", "#DE6619"),
-  new Color("Putty Beige", "#DECDC7"),
-  new Color("Raspberry", "#A31719"),
-  new Color("Rosy Beige", "#D1BDC1"),
-  new Color("Prussian Green", "#113B15"),
-  new Color("Salmon Pink", "#F9AF9C"),
-  new Color("Sand", "#FAE0B7"),
-  new Color("Sandbar Brown", "#866210"),
-  new Color("Sap Green Light", "#78A87C"),
-  new Color("Scarlet Lake", "#D22909"),
-  new Color("Seashell Pink", "#F4D1C4"),
-  new Color("Sepia", "#352D14"),
-  new Color("Sienna Brown", "#9F430A"),
-  new Color("Silver", "#A3A1A3"),
-  new Color("Sky Blue Light", "#B1E1F0"),
-  new Color("Slate Grey", "#347E8F"),
-  new Color("Spanish Orange", "#FFC12A"),
-  new Color("Spring Green", "#85CF66"),
-  new Color("Sunburst Yellow", "#FFD62F"),
-  new Color("Terra Cotta", "#A14107"),
-  new Color("True Blue", "#007EB4"),
-  new Color("True Green", "#0BBF7E"),
-  new Color("Tuscan", "#6F2436"),
-  new Color("Ultramarine", "#19189E"),
-  new Color("Violet", "#44308F"),
-  new Color("Violet Blue", "#000092"),
-  new Color("White", "#FFFFFF"),
-  new Color("Yellow Chartreuse", "#FFF991"),
-  new Color("Yellow Ochre", "#DAAD41"),
-  new Color("Yellowed Orange", "#FFA723"),
-];
-
+var prismacolors = [];
 
 for (var i = 0; i < prismacolors.length; i++) {
   prismacolors[i].convertToRGB();
@@ -179,15 +27,6 @@ for (var i = 0; i < prismacolors.length; i++) {
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-//fetch colors
-fetch("https://imageserver-pirf.onrender.com/colors")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  });
-
 //load image
 var imagepix = [];
 
@@ -196,13 +35,25 @@ var image = new Image();
 var WIDTH;
 var HEIGHT;
 
-//fetch image
-fetch("https://imageserver-pirf.onrender.com/elcap.png")
+fetch("https://imageserver-pirf.onrender.com/colors")
   .then((response) => {
-    return response.blob();
+    return response.json();
   })
   .then((data) => {
-    image.src = URL.createObjectURL(data);
+    for (var i = 0; i < data.length; i++) {
+      var col = new Color(data[i].id, data[i].hex);
+      col.convertToRGB();
+      prismacolors.push(col);
+    }
+    //fetch image
+    //fetch image
+    fetch("https://imageserver-pirf.onrender.com/elcap.png")
+      .then((response) => {
+        return response.blob();
+      })
+      .then((data) => {
+        image.src = URL.createObjectURL(data);
+      });
   });
 
 image.onload = function () {
