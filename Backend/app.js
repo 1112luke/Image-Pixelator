@@ -13,6 +13,9 @@ app.get('/:fileName', (req, res) => {
     if(fs.existsSync("assets/" + filename)){
         res.sendFile("assets/" + filename, {root: "."});
     }
+    else if(filename == "colors"){
+        res.send("colors");
+    }
     else{
         res.send("error");
     }
