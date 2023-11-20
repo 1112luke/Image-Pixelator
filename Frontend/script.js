@@ -187,12 +187,13 @@ var WIDTH;
 var HEIGHT;
 
 fetch("https://imageserver-pirf.onrender.com/lynley.jpg")
-.then(res => res.json())
-.then(result => {
-  console.log(result)
-  //image.src = "assets/lynley.jpg";
-})
-
+  .then((response) => {
+    return response.blob();
+  })
+  .then((data) => {
+    console.log(data);
+    image.src = URL.createObjectURL(data);
+  });
 
 image.onload = function () {
   canvas.width = image.width;
