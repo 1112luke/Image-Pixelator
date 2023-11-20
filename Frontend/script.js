@@ -186,7 +186,7 @@ var image = new Image();
 var WIDTH;
 var HEIGHT;
 
-fetch("https://imageserver-pirf.onrender.com/tdjsmall.jpg")
+fetch("https://imageserver-pirf.onrender.com/elcap.png")
   .then((response) => {
     return response.blob();
   })
