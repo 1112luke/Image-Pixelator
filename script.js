@@ -7,7 +7,7 @@ class Color {
 
     //hex value to rgba value
     convertToRGB(){
-        var newhex 
+    var newhex 
     this.newhex = this.hex.replace("#","");
     var bigint = parseInt(this.newhex, 16);
     var r = (bigint >> 16)& 255;
@@ -178,50 +178,50 @@ for(var i = 0; i < prismacolors.length; i++){
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-var blocksize = 10;
+//load image
+var imagepix = [];
 
-var img;
+var image = new Image();
 
-function preload() {
-    img = loadImage('assets/lynley.jpg');
+var WIDTH;
+var HEIGHT;
+
+image.src= "assets/lynley.jpg"
+
+image.onload = function() {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    WIDTH = image.width;
+    HEIGHT = image.height;
+    ctx.drawImage(image, 0, 0);
+    imagepix = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    render(imagepix);
 }
 
-function setup() {
+var blocksize = 20;
 
-    createCanvas(1000,1000);
-    //load image
-    img.loadPixels();
-    var WIDTH = img.width;
-    var HEIGHT = img.height;
+function render(pix){
+    pixels = [];
     //pixel formatting
-    var pixels = createGoodArray(img.pixels,WIDTH,HEIGHT);
+    pixels = createGoodArray(pix,WIDTH,HEIGHT);
     //redefine width and height after change
-    var WIDTH = pixels[0].length;
-    var HEIGHT = pixels.length;
+    newWIDTH = pixels[0].length;
+    newHEIGHT = pixels.length;
     //create pixelated image array
-    var newpixelarr = createPixelArray(pixels,WIDTH,HEIGHT);
+    var newpixelarr = createPixelArray(pixels,newWIDTH,newHEIGHT);
     //findclosestcolors
-    var newpixelarr = findCloseColors(newpixelarr, prismacolors);
-    //make image from pixelated array
-    var newimg = makeImage(newpixelarr,WIDTH,HEIGHT);
+    newpixelarr = findCloseColors(newpixelarr, prismacolors);
     //render as blocks
-    renderAsBlocks(WIDTH, HEIGHT, newpixelarr);
-    //display image 
-    //newimg.loadPixels();
-    //newimg.resize(350,0);
-    //image(newimg, 350, 350);
-    //image(img, 100,100);
+    renderAsBlocks(newWIDTH, newHEIGHT, newpixelarr);
 }
-
 
 //handle slider
-
 var slider = document.getElementById("slider");
-slider.oninput = function(){
-    blocksize = this.value;
-    setup();
+slider.oninput = () => {
+    blocksize = parseInt(slider.value);
+    blocksize = 201-blocksize;
+    render(imagepix);
 }
-
 
   function createGoodArray(pixels,WIDTH,HEIGHT){
     var understandable = [];
@@ -232,7 +232,7 @@ slider.oninput = function(){
             newarr.push(pixels[(i*4)+j])
         }
         understandable.push(newarr);
-        newarr = []
+        newarr = [];
     }
     
     //force understandeable into rows
@@ -243,6 +243,7 @@ slider.oninput = function(){
             row.push(understandable[i*WIDTH+j])
         }
         out.push(row);
+        row = [];
     }
 
     //slice image to be divisible by blocks
@@ -269,9 +270,9 @@ slider.oninput = function(){
     var b = 0;
     //make width and height for pixelated image
     var width = WIDTH / blocksize;
-    var height = HEIGHT / blocksize
-    for(var i = 0; i < width; i++){
-        for(var j = 0; j < height; j++){
+    var height = HEIGHT / blocksize;
+    for(var i = 0; i < height; i++){
+        for(var j = 0; j < width; j++){
             //for every new pixel
 
             var block = [];
@@ -298,28 +299,8 @@ slider.oninput = function(){
     }
     return out;
   }
-
-  function makeImage(pix,WIDTH,HEIGHT){
-    let out = createImage(WIDTH/blocksize, HEIGHT/blocksize);
-    out.loadPixels();
-    let numPixels = out.width * out.height;
-    for (let i = 0; i < numPixels; i++) {
-    // Red.
-    out.pixels[4*i] = pix[i][0];
-    // Green.
-    out.pixels[4*i+1] = pix[i][1];
-    // Blue.
-     out.pixels[4*i + 2] = pix[i][2];
-     // Alpha.
-    out.pixels[4*i + 3] = 255;
-    }
-    out.updatePixels();
-    return out;
-  }
-
   
   function findCloseColors(pixels, prismacolors){
-    console.log(prismacolors);
     for(var i = 0; i < pixels.length; i++){
         var min = 195075;
         var closestColor = ""; 
