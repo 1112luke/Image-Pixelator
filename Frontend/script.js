@@ -182,13 +182,17 @@ const ctx = canvas.getContext("2d");
 var imagepix = [];
 
 var image = new Image();
-//fix tainting issue
-image.crossOrigin = "Anonymous";
 
 var WIDTH;
 var HEIGHT;
 
-image.src = "assets/lynley.jpg";
+fetch("https://imageserver-pirf.onrender.com/lynley.jpg")
+.then(res => res.json())
+.then(result => {
+  console.log(result)
+  //image.src = "assets/lynley.jpg";
+})
+
 
 image.onload = function () {
   canvas.width = image.width;
