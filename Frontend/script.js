@@ -186,12 +186,11 @@ var image = new Image();
 var WIDTH;
 var HEIGHT;
 
-fetch("https://imageserver-pirf.onrender.com/lynley.jpg")
+fetch("https://imageserver-pirf.onrender.com/tdjsmall.jpg")
   .then((response) => {
     return response.blob();
   })
   .then((data) => {
-    console.log(data);
     image.src = URL.createObjectURL(data);
   });
 
@@ -212,8 +211,8 @@ function render(pix) {
   //pixel formatting
   pixels = createGoodArray(pix, WIDTH, HEIGHT);
   //redefine width and height after change
-  newWIDTH = pixels[0].length;
-  newHEIGHT = pixels.length;
+  var newWIDTH = pixels[0].length;
+  var newHEIGHT = pixels.length;
   //create pixelated image array
   var newpixelarr = createPixelArray(pixels, newWIDTH, newHEIGHT);
   //findclosestcolors
