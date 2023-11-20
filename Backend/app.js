@@ -14,7 +14,7 @@ app.get('/:fileName', (req, res) => {
         res.sendFile("assets/" + filename, {root: "."});
     }
     else if(filename == "colors"){
-        res.send("colors");
+        res.sendFile("colors/prismacolors.json", {root:"."});
     }
     else{
         res.send("error");
