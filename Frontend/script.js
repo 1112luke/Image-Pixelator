@@ -38,36 +38,41 @@ var HEIGHT;
 //choose image and colors
 const IMAGEPATH = "lynley.jpg";
 
-const PALLETE = "legos"//either colors for prismacolors or legos for legos
+const PALLETE = "legos"; //either colors for prismacolors or legos for legos
 
 var colorURL;
 
-if(PALLETE == "colors"){
-  colorURL = `https://imageserver-pirf.onrender.com/${PALLETE}`
-}
-else if(PALLETE == "legos"){
+if (PALLETE == "colors") {
+  colorURL = `https://imageserver-pirf.onrender.com/${PALLETE}`;
+} else if (PALLETE == "legos") {
   colorURL = "https://rebrickable.com/api/v3/lego/colors/";
 }
 
 fetch(colorURL, {
   headers: {
-    "authorization": "key fa705e8ba715f838fa45ae64382d9142"
-  }
+    authorization: "key fa705e8ba715f838fa45ae64382d9142",
+  },
 })
   .then((response) => {
     return response.json();
   })
   .then((data) => {
-    for (var i = 0; i < data.length; i++) {
-      if(PALLETE == "colors"){
+    //add data to array
+    if (PALLETE == "colors") {
+      for (var i = 0; i < data.length; i++) {
         var col = new Color(data[i].id, data[i].hex);
         col.convertToRGB();
         prismacolors.push(col);
       }
-      else if(PALLETE == "legos"){
-        console.log(data);
-      }
+    } else if (PALLETE == "legos") {
+      var list = data.results
+      for (var i = 0; i < list.length; i++){
+        var col = new Color(list[i].id, list[i].rgb);
+        col.convertToRGB();
+        prismacolors.push(col);
+      }  
     }
+
     //fetch image
     fetch(`https://imageserver-pirf.onrender.com/${IMAGEPATH}`)
       .then((response) => {
