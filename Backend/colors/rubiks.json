@@ -1,0 +1,26 @@
+[
+  {
+    "id": "Green",
+    "hex": "#009b48"
+  },
+  {
+    "id": "White",
+    "hex": "#ffffff"
+  },
+  {
+    "id": "Red",
+    "hex": "#b71234"
+  },
+  {
+    "id": "Yellow",
+    "hex": "#ffd500"
+  },
+  {
+    "id": "Blue",
+    "hex": "#0046ad"
+  },
+  {
+    "id": "Orange",
+    "hex": "#ff5800"
+  }
+]
