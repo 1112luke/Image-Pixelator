@@ -36,16 +36,16 @@ var WIDTH;
 var HEIGHT;
 
 //choose image and colors
-const IMAGEPATH = "lynley.jpg";
+const IMAGEPATH = "elcap.png";
 
 const PALLETE = "legos"; //either colors for prismacolors or legos for legos
 
 var colorURL;
 
-if (PALLETE == "colors") {
-  colorURL = `https://imageserver-pirf.onrender.com/${PALLETE}`;
-} else if (PALLETE == "legos") {
+if (PALLETE == "legos") {
   colorURL = "https://rebrickable.com/api/v3/lego/colors/";
+} else {
+  colorURL = `https://imageserver-pirf.onrender.com/${PALLETE}`;
 }
 
 fetch(colorURL, {
@@ -65,12 +65,12 @@ fetch(colorURL, {
         prismacolors.push(col);
       }
     } else if (PALLETE == "legos") {
-      var list = data.results
-      for (var i = 0; i < list.length; i++){
-        var col = new Color(list[i].id, list[i].rgb);
+      var list = data.results;
+      for (var i = 0; i < list.length; i++) {
+        var col = new Color(list[i].name, list[i].rgb);
         col.convertToRGB();
         prismacolors.push(col);
-      }  
+      }
     }
 
     //fetch image
@@ -90,10 +90,13 @@ image.onload = function () {
   HEIGHT = image.height;
   ctx.drawImage(image, 0, 0);
   imagepix = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  ctx.clearRect(0,0,canvas.width, canvas.height);
   render(imagepix);
 };
 
 var blocksize = 20;
+
+var newpixelarr = [];
 
 function render(pix) {
   pixels = [];
@@ -103,11 +106,13 @@ function render(pix) {
   var newWIDTH = pixels[0].length;
   var newHEIGHT = pixels.length;
   //create pixelated image array
-  var newpixelarr = createPixelArray(pixels, newWIDTH, newHEIGHT);
+  newpixelarr = createPixelArray(pixels, newWIDTH, newHEIGHT);
   //findclosestcolors
   newpixelarr = findCloseColors(newpixelarr, prismacolors);
   //render as blocks
-  renderAsBlocks(newWIDTH, newHEIGHT, newpixelarr);
+  //renderAsBlocks(newWIDTH, newHEIGHT, newpixelarr);
+  //render as divs
+  renderAsDivs(newWIDTH, newHEIGHT, newpixelarr);
 }
 
 //handle slider
@@ -212,7 +217,7 @@ function findCloseColors(pixels, prismacolors) {
     pixels[i][0] = closestColor.rgba[0];
     pixels[i][1] = closestColor.rgba[1];
     pixels[i][2] = closestColor.rgba[2];
-    pixels[i][3] = 255;
+    pixels[i][3] = closestColor;
   }
   return pixels;
 }
@@ -235,4 +240,42 @@ function renderAsBlocks(oldwidth, oldheight, pixels) {
       count++;
     }
   }
+}
+
+function renderAsDivs(width, height, pixels){
+
+  var box = document.getElementById("imagebox");
+
+  box.innerHTML = '';
+
+  box.style.width = `${width}px`;
+  box.style.height = `${height}px`;
+
+  var cols = width/blocksize;
+  var rows = height/blocksize;
+
+  var count = 0;
+
+  for(var i = 0; i < rows; i++){
+    for(var j = 0; j < cols; j++){
+      var newel = document.createElement("div");
+      newel.id = `${count}`
+      newel.classList.add("block");
+      newel.style.width = `${blocksize}px`;
+      newel.style.height = `${blocksize}px`;
+      newel.style.background = `rgba(${pixels[count][0]},${pixels[count][1]},${pixels[count][2]},255)`;
+      newel.style.display = "inline";
+      newel.style.float = "left";
+      //newel.style.border = "1px solid black";
+      newel.style.boxSizing = "border-box"
+      newel.addEventListener("mouseover", elementHover);
+      box.appendChild(newel);
+      count ++;
+    }
+  }
+}
+
+function elementHover(color){
+  var text = document.getElementById("pixelinfo");
+  text.innerText = `Color: ${newpixelarr[color.target.id][3].id}`
 }
